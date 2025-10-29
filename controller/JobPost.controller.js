@@ -73,7 +73,7 @@ const jobDelete = async (req, res) => {
 const jobSearch = async (req, res) => {
   try {
     const { title } = req.query;
-    if (!title) {
+    if (!title || title === "") {
       return res.status(400).json({ error: "Title query is required" });
     }
     const job = await Job.find({title:{ $regex: title, $options: "i"}})
